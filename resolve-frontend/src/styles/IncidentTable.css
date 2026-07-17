@@ -1,0 +1,110 @@
+.incident-table{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+.incident-table table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.incident-table th{
+
+    text-align:left;
+
+    padding:15px;
+
+    border-bottom:2px solid #E5E7EB;
+
+    color:#64748B;
+
+}
+
+.incident-table td{
+
+    padding:16px;
+
+    border-bottom:1px solid #EDF2F7;
+
+}
+.status{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.status.pendiente{
+
+    background:#FEF3C7;
+
+    color:#92400E;
+
+}
+
+.status.en-proceso{
+
+    background:#DBEAFE;
+
+    color:#1D4ED8;
+
+}
+
+.status.resuelta{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+.priority{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.priority.alta{
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+}
+
+.priority.media{
+
+    background:#FEF3C7;
+
+    color:#92400E;
+
+}
+
+.priority.baja{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}

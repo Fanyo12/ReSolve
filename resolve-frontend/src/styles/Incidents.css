@@ -1,0 +1,57 @@
+.incidents-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.incidents-header h1{
+
+    font-size:38px;
+
+    color:#12344D;
+
+}
+
+.incidents-header p{
+
+    margin-top:8px;
+
+    color:#64748B;
+
+}
+
+.new-ticket-btn{
+
+    background:#12344D;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.new-ticket-btn:hover{
+
+    background:#1d4f73;
+
+    transform:translateY(-2px);
+
+}

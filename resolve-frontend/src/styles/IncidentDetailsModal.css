@@ -1,0 +1,47 @@
+.detail-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:16px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.detail-item strong{
+
+    color:#12344D;
+
+}
+
+.detail-description{
+
+    margin-top:25px;
+
+}
+
+.detail-description strong{
+
+    display:block;
+
+    margin-bottom:10px;
+
+}
+
+.detail-description p{
+
+    background:#F8FAFC;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    color:#475569;
+
+    line-height:1.6;
+
+}

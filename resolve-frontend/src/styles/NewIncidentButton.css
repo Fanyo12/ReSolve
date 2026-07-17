@@ -1,0 +1,29 @@
+.new-incident-btn{
+
+    background:#12344D;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 22px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.new-incident-btn:hover{
+
+    background:#1B4E72;
+
+    transform:translateY(-2px);
+
+}

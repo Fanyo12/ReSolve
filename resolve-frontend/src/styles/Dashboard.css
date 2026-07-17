@@ -1,0 +1,159 @@
+.dashboard{
+    display:flex;
+}
+
+.dashboard-content{
+    flex:1;
+    margin-left:260px;
+    min-height:100vh;
+
+    background:#F4F7FA;
+
+    padding:35px;
+}
+
+/* HEADER */
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:white;
+
+    padding:22px 28px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+}
+
+.header-text h1{
+    color:#12344D;
+    font-size:32px;
+    margin-bottom:6px;
+}
+
+.header-text p{
+    color:#64748B;
+}
+
+/* BOTÓN */
+
+.logout-button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    background:#12344D;
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+.logout-button:hover{
+
+    background:#19557B;
+
+}
+
+/* TARJETA BIENVENIDA */
+
+.welcome-card{
+
+    margin-top:30px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+
+}
+
+.welcome-card h2{
+
+    color:#12344D;
+
+    margin-bottom:10px;
+
+}
+
+.welcome-card p{
+
+    color:#64748B;
+
+}
+/* HEADER DERECHO */
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.user-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.user-avatar{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:#12344D;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+}
+
+.user-info p{
+
+    color:#64748B;
+
+    font-size:13px;
+
+}
+
+.dashboard-date{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#64748B;
+
+}

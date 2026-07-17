@@ -1,0 +1,43 @@
+.incident-filters{
+
+    display:flex;
+
+    gap:15px;
+
+    margin:30px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.incident-filters input,
+.incident-filters select{
+
+    padding:13px 15px;
+
+    border:1px solid #D9E2EC;
+
+    border-radius:12px;
+
+    background:white;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.incident-filters input{
+
+    flex:1;
+
+    min-width:260px;
+
+}
+
+.incident-filters input:focus,
+.incident-filters select:focus{
+
+    border-color:#12344D;
+
+}
