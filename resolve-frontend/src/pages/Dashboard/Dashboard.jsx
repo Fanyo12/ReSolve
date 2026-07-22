@@ -1,6 +1,6 @@
-
-import { useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { getIncidents } from "../../services/incidentApi";
 import Layout from "../../components/Layout";
 import "../../styles/Dashboard.css";
 import StatCard from "../../components/StatCard";
@@ -14,6 +14,11 @@ import {
 import RecentIncidents from "../../components/RecentIncidents";
 function Dashboard() {
   const navigate = useNavigate();
+  const [stats, setStats] = useState({
+    total: 0,
+    pendientes: 0,
+    resueltas: 0,
+});
 const fechaActual = useMemo(() => {
     return new Date().toLocaleDateString("es-MX", {
         weekday: "long",
@@ -37,15 +42,46 @@ const saludo = useMemo(() => {
 }, []);
 
   useEffect(() => {
+
     const token = localStorage.getItem("token");
 
     if (!token) {
-      navigate("/");
+        navigate("/");
+        return;
     }
-  }, []);
 
-  return (
+    const loadDashboard = async () => {
 
+        try {
+
+            const incidents = await getIncidents();
+
+            setStats({
+
+                total: incidents.length,
+
+                pendientes: incidents.filter(
+                    i => i.status === "pendiente"
+                ).length,
+
+                cerradas: incidents.filter(
+    i => i.status === "cerrado"
+).length,
+
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    };
+
+    loadDashboard();
+
+}, [navigate]);
+return (
 <Layout>
 
         <header className="dashboard-header">
@@ -112,7 +148,7 @@ const saludo = useMemo(() => {
 
     <StatCard
         title="Incidencias"
-        value="18"
+        value={stats.total}
         color="#3B82F6"
         icon={<Ticket size={26}/>}
     />
@@ -121,17 +157,17 @@ const saludo = useMemo(() => {
 
     <StatCard
         title="Pendientes"
-        value="4"
+        value={stats.pendientes}
         color="#F59E0B"
         icon={<Clock3 size={26}/>}
     />
 
     <StatCard
-        title="Resueltas"
-        value="14"
-        color="#10B981"
-        icon={<CheckCircle2 size={26}/>}
-    />
+    title="Cerradas"
+    value={stats.cerradas}
+    color="#10B981"
+    icon={<CheckCircle2 size={26}/>}
+ />
 
     <StatCard
         title="Usuarios"
