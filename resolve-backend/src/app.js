@@ -11,6 +11,7 @@ const ticketRoutes = require("./routes/ticketRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const departmentRoutes = require("./routes/departmentRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const knowledgeRoutes = require("./routes/knowledgeRoutes");
 
 
 app.use(cors());
@@ -21,6 +22,7 @@ app.use("/api/tickets", ticketRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/knowledge", knowledgeRoutes);
 app.get("/", (req, res) => {
     res.send("💙 Bienvenido a ReSolve API");
 });
