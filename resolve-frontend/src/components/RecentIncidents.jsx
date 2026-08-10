@@ -1,76 +1,57 @@
 import "../styles/RecentIncidents.css";
 
-function RecentIncidents() {
+function RecentIncidents({ incidents }) {
 
-    const incidents = [
 
-        {
-            id:"INC-001",
-            area:"Recepción",
-            status:"Pendiente",
-            priority:"Alta"
-        },
+return(
 
-        {
-            id:"INC-002",
-            area:"Recursos Humanos",
-            status:"Resuelta",
-            priority:"Baja"
-        },
+    <div className="recent-card">
 
-        {
-            id:"INC-003",
-            area:"Sistemas",
-            status:"En proceso",
-            priority:"Media"
-        },
+        <h2>📋 Incidencias recientes</h2>
 
-        {
-            id:"INC-004",
-            area:"Cocina",
-            status:"Pendiente",
-            priority:"Alta"
-        }
 
-    ];
+        <table>
 
-    return(
+            <thead>
 
-        <div className="recent-card">
+                <tr>
 
-            <h2>📋 Incidencias recientes</h2>
+                    <th>Ticket</th>
 
-            <table>
+                    <th>Área</th>
 
-                <thead>
+                    <th>Estado</th>
 
-                    <tr>
+                    <th>Prioridad</th>
 
-                        <th>Ticket</th>
+                </tr>
 
-                        <th>Área</th>
+            </thead>
 
-                        <th>Estado</th>
 
-                        <th>Prioridad</th>
+            <tbody>
 
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {incidents.map((incident)=>(
+                {
+                    incidents.map((incident)=>(
 
                         <tr key={incident.id}>
 
-                            <td>{incident.id}</td>
 
-                            <td>{incident.area}</td>
+                            <td>
+                                INC-{String(incident.id).padStart(3,"0")}
+                            </td>
+
+
+                            <td>
+                                {incident.department}
+                            </td>
+
 
                             <td>
 
-                                <span className={`status ${incident.status.replace(" ","-")}`}>
+                                <span 
+                                className={`status ${incident.status.replace(" ","-")}`}
+                                >
 
                                     {incident.status}
 
@@ -78,9 +59,12 @@ function RecentIncidents() {
 
                             </td>
 
+
                             <td>
 
-                                <span className={`priority ${incident.priority}`}>
+                                <span 
+                                className={`priority ${incident.priority.toLowerCase()}`}
+                                >
 
                                     {incident.priority}
 
@@ -88,17 +72,23 @@ function RecentIncidents() {
 
                             </td>
 
+
                         </tr>
 
-                    ))}
+                    ))
+                }
 
-                </tbody>
 
-            </table>
+            </tbody>
 
-        </div>
 
-    );
+        </table>
+
+
+    </div>
+
+);
+
 
 }
 

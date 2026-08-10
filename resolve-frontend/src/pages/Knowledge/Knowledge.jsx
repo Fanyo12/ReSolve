@@ -42,6 +42,12 @@ const [departmentFilter, setDepartmentFilter] = useState("all");
 
 const [departments, setDepartments] = useState([]);
 
+const user = JSON.parse(
+    localStorage.getItem("user")
+);
+
+const role = user?.role;
+
 
    useEffect(()=>{
 
@@ -209,16 +215,21 @@ return (
 
 
 
-            <button
+            {
+    (role === "admin" || role === "tecnico") && (
 
-    className="add-knowledge-btn"
+        <button
 
-    onClick={()=>setShowAddModal(true)}
+            className="add-knowledge-btn"
 
->
-    ➕ Añadir conocimiento
-</button>
+            onClick={()=>setShowAddModal(true)}
 
+        >
+            ➕ Añadir conocimiento
+        </button>
+
+    )
+}
 
 
                 {
@@ -263,7 +274,8 @@ return (
 
 
             {
-    showAddModal && (
+    showAddModal && 
+    (role === "admin" || role === "tecnico") && (
 
         <AddKnowledgeModal
 
@@ -296,9 +308,12 @@ return (
 
         <TicketKnowledgeModal
 
-            onClose={()=>setShowTicketModal(false)}
+    onClose={()=>setShowTicketModal(false)}
 
-        />
+    onSuccess={loadKnowledge}
+
+/>
+
 
     )
 }

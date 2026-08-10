@@ -4,12 +4,24 @@ const router = express.Router();
 
 const userController = require("../controllers/userController");
 
-router.post(
+const authMiddleware = require("../middlewares/authMiddleware");
+const roleMiddleware = require("../middlewares/roleMiddleware");
 
+
+router.get(
     "/",
-
-    userController.createUser
-
+    authMiddleware,
+    roleMiddleware("admin"),
+    userController.getUsers
 );
+
+
+router.post(
+    "/",
+    authMiddleware,
+    roleMiddleware("admin"),
+    userController.createUser
+);
+
 
 module.exports = router;

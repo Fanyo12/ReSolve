@@ -1,37 +1,52 @@
 const userService = require("../services/userService");
 
-const createUser = async(req,res)=>{
+const createUser = async (req, res) => {
 
-    try{
+    try {
 
         await userService.createUser(req.body);
 
         res.status(201).json({
-
-            success:true,
-
-            message:"Usuario creado correctamente."
-
+            success: true,
+            message: "Usuario creado correctamente."
         });
 
-    }catch(error){
+    } catch (error) {
 
         console.error(error);
 
         res.status(500).json({
-
-            success:false,
-
-            message:"Error al crear usuario."
-
+            success: false,
+            message: "Error al crear usuario."
         });
 
     }
-
 };
 
-module.exports={
+const getUsers = async (req, res) => {
 
-    createUser
+    try {
 
+        const users = await userService.getUsers();
+
+        res.json({
+            success: true,
+            data: users
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Error al obtener usuarios."
+        });
+
+    }
+};
+
+module.exports = {
+    createUser,
+    getUsers
 };

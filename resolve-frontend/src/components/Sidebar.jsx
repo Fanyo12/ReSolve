@@ -5,7 +5,8 @@ import {
     Ticket,
     BookOpen,
     Users,
-    Settings
+    Settings,
+    CheckSquare
 } from "lucide-react";
 
 function Sidebar() {
@@ -38,11 +39,15 @@ function Sidebar() {
         <Users size={18}/>
         Usuarios
     </NavLink>
+     <NavLink to="/pendientes">
 
-    <NavLink to="/configuracion">
-        <Settings size={18}/>
-        Configuración
-    </NavLink>
+    <CheckSquare size={18}/>
+
+    Pendientes
+
+</NavLink>
+
+
 
 </nav>
 

@@ -14,11 +14,17 @@ import {
 import RecentIncidents from "../../components/RecentIncidents";
 function Dashboard() {
   const navigate = useNavigate();
+  const user = JSON.parse(
+    localStorage.getItem("user")
+);
+
   const [stats, setStats] = useState({
     total: 0,
     pendientes: 0,
     resueltas: 0,
 });
+const [recentIncidents, setRecentIncidents] = useState([]);
+
 const fechaActual = useMemo(() => {
     return new Date().toLocaleDateString("es-MX", {
         weekday: "long",
@@ -55,6 +61,10 @@ const saludo = useMemo(() => {
         try {
 
             const incidents = await getIncidents();
+
+            setRecentIncidents(
+    incidents.slice(0,5)
+);
 
             setStats({
 
@@ -102,14 +112,18 @@ return (
     <div className="user-info">
 
         <div className="user-avatar">
-            F
-        </div>
+    {user?.name?.charAt(0).toUpperCase()}
+</div>
 
         <div>
 
-            <strong>Fany</strong>
+            <strong>
+    {user?.name}
+</strong>
 
-            <p>Administrador</p>
+<p>
+    {user?.role}
+</p>
 
         </div>
 
@@ -130,7 +144,9 @@ return (
 
         <section className="welcome-card">
 
-    <h2>{saludo}, Fany 💙</h2> 
+    <h2>
+    {saludo}, {user?.name} 💙
+</h2>
 
     <p>
         El sistema está listo para gestionar incidencias,
@@ -169,16 +185,12 @@ return (
     icon={<CheckCircle2 size={26}/>}
  />
 
-    <StatCard
-        title="Usuarios"
-        value="8"
-        color="#8B5CF6"
-        icon={<Users size={26}/>}
-    />
-
 </section>
 
-<RecentIncidents/>
+<RecentIncidents
+    incidents={recentIncidents}
+/>
+
 
 </Layout>
 

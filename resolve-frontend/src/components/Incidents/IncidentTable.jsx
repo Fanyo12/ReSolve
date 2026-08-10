@@ -4,10 +4,12 @@ import IncidentRow from "./IncidentRow";
 
 function IncidentTable({
     incidents,
+    role,
     onView,
     onEdit,
     onDelete
-}) {
+})
+{
     return(
 
         <div className="incident-table">
@@ -43,6 +45,7 @@ function IncidentTable({
                        <IncidentRow
     key={incident.id}
     incident={incident}
+    role={role}
     onView={onView}
     onEdit={onEdit}
     onDelete={onDelete}

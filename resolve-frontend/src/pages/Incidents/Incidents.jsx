@@ -26,6 +26,12 @@ function Incidents() {
     const [priorityFilter, setPriorityFilter] = useState("");
     const [editingIncident, setEditingIncident] = useState(null);
 
+    const user = JSON.parse(
+    localStorage.getItem("user")
+);
+
+const role = user?.role;
+
     const [selectedIncident, setSelectedIncident] = useState(null);
 
      const [incidents, setIncidents] = useState([]);    
@@ -205,15 +211,22 @@ const priorities = [
 
                 </div>
 
-                <NewIncidentButton
-                    onClick={() => {
+                {
+    (role === "admin" || role === "tecnico") && (
 
-                        setEditingIncident(null);
+        <NewIncidentButton
+            onClick={() => {
 
-                        setShowModal(true);
+                setEditingIncident(null);
 
-                    }}
-                />
+                setShowModal(true);
+
+            }}
+        />
+
+    )
+}
+
 
             </div>
 
@@ -231,9 +244,11 @@ const priorities = [
     priorities={priorities}
 />
 
-            <IncidentTable
+           <IncidentTable
 
     incidents={filteredIncidents}
+
+    role={role}
 
     onView={(incident) => {
 

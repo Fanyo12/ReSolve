@@ -2,10 +2,13 @@ import { Eye, Pencil, Trash2 } from "lucide-react";
 
 function IncidentRow({
     incident,
+    role,
     onView,
     onEdit,
     onDelete
-}) {
+})
+
+{
 
     return (
 
@@ -48,27 +51,40 @@ function IncidentRow({
                     onClick={() => onView(incident)}
                 />
 
-                <Pencil
-                    size={18}
-                    onClick={() => onEdit(incident)}
-                />
+                {
+    (role === "admin" || role === "tecnico") && (
 
-                <Trash2
-                    size={18}
-                    onClick={() => {
+        <Pencil
+            size={18}
+            onClick={() => onEdit(incident)}
+        />
 
-                        const confirmDelete = window.confirm(
-                            `¿Deseas eliminar la incidencia "${incident.title}"?`
-                        );
+    )
+}
 
-                        if (confirmDelete) {
 
-                            onDelete(incident.id);
+{
+    role === "admin" && (
 
-                        }
+        <Trash2
+            size={18}
+            onClick={() => {
 
-                    }}
-                />
+                const confirmDelete = window.confirm(
+                    `¿Deseas eliminar la incidencia "${incident.title}"?`
+                );
+
+                if (confirmDelete) {
+
+                    onDelete(incident.id);
+
+                }
+
+            }}
+        />
+
+    )
+}
 
             </td>
 
