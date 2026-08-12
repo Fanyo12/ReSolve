@@ -50,13 +50,17 @@ async function getAllTickets(req, res) {
     }
 
 }
+
 async function updateTicket(req, res) {
 
     try {
 
         const { id } = req.params;
 
-        const ticket = await ticketService.updateTicket(id, req.body);
+        const ticket = await ticketService.updateTicket(
+            id,
+            req.body
+        );
 
         res.json({
             success: true,
@@ -74,13 +78,19 @@ async function updateTicket(req, res) {
     }
 
 }
+
 async function closeTicket(req, res) {
 
     try {
 
         const { id } = req.params;
 
-        const ticket = await ticketService.closeTicket(id);
+        const { solution } = req.body;
+
+        const ticket = await ticketService.closeTicket(
+            id,
+            solution
+        );
 
         res.json({
             success: true,
@@ -98,6 +108,7 @@ async function closeTicket(req, res) {
     }
 
 }
+
 async function deleteTicket(req, res) {
 
     try {
@@ -115,8 +126,8 @@ async function deleteTicket(req, res) {
     } catch (error) {
 
         res.status(400).json({
-            success:false,
-            message:error.message
+            success: false,
+            message: error.message
         });
 
     }

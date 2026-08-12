@@ -293,17 +293,19 @@ async function updateTicket(id, data) {
 
 }
 
-async function closeTicket(id) {
+async function closeTicket(id, solution) {
 
     const [result] = await db.query(
 
         `
         UPDATE incidents
-        SET status = 'cerrado'
+        SET
+            status = 'cerrado',
+            solution = ?
         WHERE id = ?
         `,
 
-        [id]
+        [solution || null, id]
 
     );
 
@@ -316,11 +318,12 @@ async function closeTicket(id) {
     return {
 
         id,
-        status: "cerrado"
+        status: "cerrado",
+        solution: solution || null
 
     };
-
 }
+
 async function deleteTicket(id) {
 
     const [result] = await db.query(
