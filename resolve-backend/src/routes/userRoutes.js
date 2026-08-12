@@ -24,4 +24,12 @@ router.post(
 );
 
 
+router.put(
+    "/:id/status",
+    authMiddleware,
+    roleMiddleware("admin"),
+    userController.updateUserStatus
+);
+
+
 module.exports = router;

@@ -83,6 +83,56 @@ function Users() {
 
     };
 
+    const handleToggleStatus = async (user) => {
+
+    const newStatus = !user.active;
+
+    const action = newStatus
+        ? "activar"
+        : "desactivar";
+
+    const confirmed = window.confirm(
+        `¿Seguro que deseas ${action} al usuario ${user.name}?`
+    );
+
+    if (!confirmed) return;
+
+    try {
+
+        const response = await api.put(
+            `/users/${user.id}/status`,
+            {
+                active: newStatus
+            }
+        );
+
+        if (response.data.success) {
+
+            alert(
+                newStatus
+                    ? "Usuario activado correctamente."
+                    : "Usuario desactivado correctamente."
+            );
+
+            loadUsers();
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Error al cambiar estado:",
+            error
+        );
+
+        alert(
+            error.response?.data?.message ||
+            "No se pudo actualizar el estado del usuario."
+        );
+
+    }
+
+};
     return (
 
         <div className="dashboard">
@@ -141,6 +191,7 @@ function Users() {
                                 <th style={thStyle}>Correo</th>
                                 <th style={thStyle}>Rol</th>
                                 <th style={thStyle}>Estado</th>
+                                <th style={thStyle}>Acciones</th>
                             </tr>
 
                         </thead>
@@ -170,6 +221,22 @@ function Users() {
 
                                     <td style={tdStyle}>
                                         {user.active ? "Activo" : "Inactivo"}
+                                    </td>
+
+                                    <td style={tdStyle}>
+                                        <button
+                                            onClick={() => handleToggleStatus(user)}
+                                            style={{
+                                                padding: "8px 16px",
+                                                border: "none",
+                                                borderRadius: "4px",
+                                                cursor: "pointer",
+                                                backgroundColor: user.active ? "lightcoral" : "lightgreen",
+                                                color: "white"
+                                            }}
+                                        >
+                                            {user.active ? "Desactivar" : "Activar"}
+                                        </button>
                                     </td>
 
                                 </tr>
@@ -241,6 +308,8 @@ function Users() {
         Consulta
     </option>
 </select>
+
+
 
                                 <div style={{
                                     display: "flex",

@@ -1,5 +1,6 @@
 const userService = require("../services/userService");
 
+
 const createUser = async (req, res) => {
 
     try {
@@ -21,7 +22,9 @@ const createUser = async (req, res) => {
         });
 
     }
+
 };
+
 
 const getUsers = async (req, res) => {
 
@@ -44,9 +47,43 @@ const getUsers = async (req, res) => {
         });
 
     }
+
 };
+
+
+const updateUserStatus = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        const { active } = req.body;
+
+        await userService.updateUserStatus(id, active);
+
+        res.json({
+            success: true,
+            message: active
+                ? "Usuario activado correctamente."
+                : "Usuario desactivado correctamente."
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Error al actualizar el estado del usuario."
+        });
+
+    }
+
+};
+
 
 module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    updateUserStatus
 };
